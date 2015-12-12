@@ -22,10 +22,7 @@ public class DetailOrderActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        int orderId = intent.getIntExtra("order", 0);
 
-        Toast.makeText(this, "Заказ  №" + orderId, Toast.LENGTH_SHORT).show();
 
     }
 

@@ -18,6 +18,17 @@
     <string name="item_drawer_profile">Мои данные</string>
     <string name="item_drawer_info">О приожении</string>
 
+    <!-- dialog phone -->
+    <string name="dialog_phone_title">Укажите ваш номер телефона</string>
+    <string name="dialog_phone_subtitle">На этот номер будет отправлено смс с кодом подтверждения</string>
+    <string name="dialog_phone_second_try">Отправить код еще раз</string>
+    <string name="dialog_phone_write_code_title">Введите код подтверждения из СМС</string>
+    <string name="dialog_phone_send_sms">Отправить смс</string>
+
+    <!-- dialog phone_ok -->
+    <string name="dialog_phone_ok_title">Номер телефона подтвержден</string>
+    <string name="dialog_phone_ok_btn_ok">ок</string>
+
 
     <string-array name="swipeRefreshColors">
         <item>@color/colorPrimary</item>

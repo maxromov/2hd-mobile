@@ -16,7 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import uzap.com.ua.twohourdelivery.AppContext;
 import uzap.com.ua.twohourdelivery.R;
+import uzap.com.ua.twohourdelivery.callback.OrderListListener;
+import uzap.com.ua.twohourdelivery.data.Order;
 import uzap.com.ua.twohourdelivery.fragment.CommonFragment;
 import uzap.com.ua.twohourdelivery.fragment.FrgCurrentOrder;
 import uzap.com.ua.twohourdelivery.fragment.FrgInfo;
@@ -25,11 +30,11 @@ import uzap.com.ua.twohourdelivery.fragment.FrgProfile;
 import uzap.com.ua.twohourdelivery.task.TestTask;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, OrderListListener {
 
+    public static FragmentManager fm;
     private DrawerLayout mDrawerLayout;
     private FloatingActionButton fab;
-
     private Context context;
 
     @Override
@@ -37,6 +42,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AppContext.getWritableDatabase().deleteOrderTable();
+
+        fm = getSupportFragmentManager();
         context = this;
 
         replaceFragment(new FrgOpenOrder());
@@ -46,14 +54,14 @@ public class MainActivity extends AppCompatActivity
 
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                new TestTask(context).execute();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+////                        .setAction("Action", null).show();
+//                new TestTask(context, MainActivity.this).execute();
+//            }
+//        });
 
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -64,6 +72,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+
+    public void clickFabButton(final OrderListListener listListener, final ArrayList<Order> list) {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TestTask(context, listListener, list).execute();
+            }
+        });
+    }
+
+    @Override
+    public void orderListener(ArrayList<Order> list) {
+
     }
 
 
@@ -165,4 +188,6 @@ public class MainActivity extends AppCompatActivity
     public void showFab() {
         fab.setVisibility(View.VISIBLE);
     }
+
+
 }

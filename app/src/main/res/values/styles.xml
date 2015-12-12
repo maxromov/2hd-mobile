@@ -17,4 +17,167 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="TitleFontGray" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textColor">@color/custom_text_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontGrayV2" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textColor">@color/custom_text_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontBlackV2" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontRed" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textColor">@color/custom_red_more_dark_for_selector</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontBlack" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontBlackEditDialogPhone" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_edit_dialog_phone</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontBlackLargeDialog" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title_dialog</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontGreenLargeDialog" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontBlackLarge" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title_black_large</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontBlackLargeAuto" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title_card_auto</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontBlackLargeBold" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title_card_auto</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+
+    <style name="TitleFontBlackTimer" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontBlackTimerBold" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="SubTitleFontBlackListHelp" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_subhead</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontGreenTimerBold" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontGreen" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontGreenBold" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontGreenV2" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textColor">@color/custom_text_green</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="subTitleFontGreen" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/custom_text_green</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TitleFontWhite" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_title_white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="TextFontWhite" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/toggle_btn</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="SubTitleFontGray" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">@dimen/text_size_subhead</item>
+        <item name="android:textColor">@color/custom_text_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="SubTitleFontGray14" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/custom_text_gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
 </resources>

@@ -4,13 +4,22 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class TestTask extends AsyncTask<Void, Void, Void> {
+import java.util.ArrayList;
+
+import uzap.com.ua.twohourdelivery.callback.OrderListListener;
+import uzap.com.ua.twohourdelivery.data.Order;
+
+public class TestTask extends AsyncTask<Void, Void, ArrayList<Order>> {
 
     private ProgressDialog pDialog;
     private Context context;
+    private OrderListListener myComponent;
+    private ArrayList<Order> list;
 
-    public TestTask(Context context) {
+    public TestTask(Context context, OrderListListener myComponent, ArrayList<Order> list) {
         this.context = context;
+        this.myComponent = myComponent;
+        this.list = list;
         pDialog = new ProgressDialog(context);
     }
 
@@ -23,18 +32,22 @@ public class TestTask extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected ArrayList<Order> doInBackground(Void... params) {
+        ArrayList<Order> orderList = list;
+        orderList.add(new Order("5 мин.", "Киев", "Бровары", "1200 грн."));
+
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return null;
+        return orderList;
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
+    protected void onPostExecute(ArrayList<Order> list) {
+        super.onPostExecute(list);
+        myComponent.orderListener(list);
         pDialog.dismiss();
     }
 }

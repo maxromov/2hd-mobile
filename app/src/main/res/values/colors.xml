@@ -6,4 +6,55 @@
     <color name="textColorPrimary">#ff000000</color>
     <color name="colorHighlight">#B6B6B6</color>
     <color name="textColorSecondary">#727272</color>
+
+
+    <color name="trans">#00000000</color>
+    <color name="transBtn">#ccFFFFFF</color>
+    <color name="green">#5ab138</color>
+
+    <color name="holo_blue">#3305B5</color>
+
+    <color name="colorSecondTryPhoneDialog">#00208C</color>
+    <color name="colorFrgPaymentBG">#f3f3f3</color>
+
+    <color name="primary_green">#8bc34a</color>
+    <color name="primary_dark_green">#558b2f</color>
+
+    <color name="custom_teal_dark">#00796B</color>
+    <color name="custom_teal">#009688</color>
+    <color name="custom_teal_light">#B2DFDB</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_medium">#727272</color>
+    <color name="gray_dark">#ff616161</color>
+    <color name="gray_light">#f2f2f2</color>
+
+    <color name="gray_divider">#b1b1b1</color>
+
+    <color name="custom_cyan_dark">#0097A7</color>
+    <color name="custom_blue_gray">#607D8B</color>
+
+    <color name="create_account">#1c2531</color>
+    <color name="accent_green">#689f38</color>
+
+    <color name="custom_yellow">#f9c013</color>
+    <color name="custom_text_green">#00b332</color>
+    <color name="custom_red">#ff0000</color>
+    <color name="custom_text_gray">#808080</color>
+    <color name="custom_gray_dot">#5a5a5a</color>
+    <color name="custom_black_semi_transparent">#CC000000</color>
+
+    <color name="white_gray">#e0ffffff</color>
+    <color name="gray_light_more_dark_for_selector">#dddddd</color>
+
+
+    <color name="custom_green">#5ab138</color>
+    <color name="custom_green_semi_transparent">#E65ab138</color>
+    <color name="custom_yellow_more_dark_for_selector">#dda613</color>
+    <color name="custom_green_more_dark_for_selector">#348e34</color>
+    <color name="white_more_dark_for_selector">#eae8e8</color>
+    <color name="custom_red_more_dark_for_selector">#b72b2b</color>
+    <color name="gray_for_selector">#3b3b3b</color>
+    <color name="gray_more_dark_for_selector">#2e2e2e</color>
 </resources>

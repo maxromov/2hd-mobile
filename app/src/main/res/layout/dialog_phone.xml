@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TitleFontBlackLargeDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="25dp"
+            android:text="@string/dialog_phone_title" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            style="@style/TitleFontGray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="@string/dialog_phone_subtitle" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            style="@style/TitleFontBlackEditDialogPhone"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_edittext_dialog"
+            android:gravity="center"
+            android:hint="+7(xxx)xxx-xx-xx"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp" />
+
+        <EditText
+            android:id="@+id/etUserName"
+            style="@style/TitleFontBlackEditDialogPhone"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_edittext_dialog"
+            android:gravity="center"
+            android:hint="Имя Фамилия"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp" />
+
+        <TextView
+            android:id="@+id/tvReplaceCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="@string/dialog_phone_second_try"
+            android:textColor="@color/colorSecondTryPhoneDialog"
+            android:textSize="@dimen/text_dialog_phone_second_try_and_write" />
+
+        <TextView
+            android:id="@+id/tvMsgCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:paddingLeft="45dp"
+            android:paddingRight="45dp"
+            android:text="@string/dialog_phone_write_code_title"
+            android:textSize="@dimen/text_dialog_phone_second_try_and_write" />
+
+        <EditText
+            android:id="@+id/etCodeMsg"
+            style="@style/TitleFontBlackEditDialogPhone"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/bg_edittext_dialog"
+            android:gravity="center"
+            android:hint="xxxx"
+            android:inputType="number"
+            android:maxLength="4"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp" />
+
+        <Button
+            android:id="@+id/btnPhone"
+            style="@style/TitleFontBlackLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/bg_btn_dialog"
+            android:text="@string/dialog_phone_send_sms" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/TitleFontWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/bg_btn_cancel"
+        android:padding="5dp"
+        android:text="Отмена"
+        android:textAllCaps="false" />
+
+
+</RelativeLayout>
