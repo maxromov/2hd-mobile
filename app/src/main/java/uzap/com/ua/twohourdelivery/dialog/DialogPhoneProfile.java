@@ -112,8 +112,20 @@ public class DialogPhoneProfile extends DialogFragment {
                     case SendCode:
 //                        new TaskVerifyCode(getActivity(), phone, etCodeMsg.getText().toString(),
 //                                formPhone, formPhoneOk, tvMsgCode, etCodeMsg).execute();
-                        formPhone.setVisibility(View.GONE);
-                        formPhoneOk.setVisibility(View.VISIBLE);
+                        if (etCodeMsg.getText().toString().equals("0000")) {
+                            formPhone.setVisibility(View.GONE);
+                            formPhoneOk.setVisibility(View.VISIBLE);
+                        } else {
+                            tvMsgCode.setText("Неверный код, проверьте правильность ввода");
+                            tvMsgCode.setTextColor(Color.RED);
+
+                            int sdk = android.os.Build.VERSION.SDK_INT;
+                            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                                etCodeMsg.setBackgroundDrawable(getActivity().getResources().getDrawable(R.drawable.bg_edittext_error));
+                            } else {
+                                etCodeMsg.setBackground(getActivity().getResources().getDrawable(R.drawable.bg_edittext_error));
+                            }
+                        }
                         break;
                 }
             }

@@ -13,16 +13,22 @@ import uzap.com.ua.twohourdelivery.util.OrderUtil;
 
 public class GetAllOrderTask extends AsyncTask<Void, Void, ArrayList<Order>> {
     private OnLoadOrderListListener myComponent;
-
     private Context context;
-    private ProgressDialog progressDialog;
+    private ProgressDialog pDialog;
 
-    public GetAllOrderTask(OnLoadOrderListListener myComponent, Context context,
-                           boolean loadDialog) {
+    public GetAllOrderTask(OnLoadOrderListListener myComponent, Context context) {
         this.context = context;
         this.myComponent = myComponent;
+        pDialog = new ProgressDialog(context);
     }
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Обновление заявок...");
+        pDialog.show();
+    }
 
     @Override
     protected ArrayList<Order> doInBackground(Void... voids) {
@@ -33,7 +39,7 @@ public class GetAllOrderTask extends AsyncTask<Void, Void, ArrayList<Order>> {
     protected void onPostExecute(ArrayList<Order> orders) {
         if (myComponent != null) {
             myComponent.onLoadOrderList(orders);
-
         }
+        pDialog.dismiss();
     }
 }

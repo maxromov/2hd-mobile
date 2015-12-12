@@ -1,6 +1,7 @@
 package uzap.com.ua.twohourdelivery.activity;
 
 import android.content.Context;
+import android.net.MailTo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 import uzap.com.ua.twohourdelivery.AppContext;
 import uzap.com.ua.twohourdelivery.R;
+import uzap.com.ua.twohourdelivery.callback.OnLoadOrderListListener;
 import uzap.com.ua.twohourdelivery.callback.OrderListListener;
 import uzap.com.ua.twohourdelivery.data.Order;
 import uzap.com.ua.twohourdelivery.fragment.CommonFragment;
@@ -27,6 +29,7 @@ import uzap.com.ua.twohourdelivery.fragment.FrgCurrentOrder;
 import uzap.com.ua.twohourdelivery.fragment.FrgInfo;
 import uzap.com.ua.twohourdelivery.fragment.FrgOpenOrder;
 import uzap.com.ua.twohourdelivery.fragment.FrgProfile;
+import uzap.com.ua.twohourdelivery.task.GetAllOrderTask;
 import uzap.com.ua.twohourdelivery.task.TestTask;
 
 public class MainActivity extends AppCompatActivity
@@ -98,11 +101,11 @@ public class MainActivity extends AppCompatActivity
 //        navigate(mItemSelected);
     }
 
-    public void clickFabButton(final OrderListListener listListener, final ArrayList<Order> list) {
+    public void clickFabButton(final OnLoadOrderListListener listListener) {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new TestTask(context, listListener, list).execute();
+                new GetAllOrderTask(listListener, MainActivity.this).execute();
             }
         });
     }

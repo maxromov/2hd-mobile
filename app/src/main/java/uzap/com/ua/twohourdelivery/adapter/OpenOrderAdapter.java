@@ -40,7 +40,7 @@ public class OpenOrderAdapter extends RecyclerView.Adapter<OpenOrderAdapter.Orde
     @Override
     public void onBindViewHolder(OrderViewHolder holder, int position) {
         Order order = list.get(position);
-        holder.tvTimeAgo.setText(order.getTime());
+        holder.tvTimeAgo.setText(String.valueOf(order.getTime()));
         holder.tvAddressFrom.setText(order.getAddressFrom());
         holder.tvAddressTo.setText(order.getAddressTo());
         holder.tvOrderPrice.setText(order.getPrice());
@@ -48,7 +48,10 @@ public class OpenOrderAdapter extends RecyclerView.Adapter<OpenOrderAdapter.Orde
 
     @Override
     public int getItemCount() {
-        return list.size();
+        if (list != null) {
+            return list.size();
+        }
+        return 0;
     }
 
     public static class OrderViewHolder extends RecyclerView.ViewHolder {

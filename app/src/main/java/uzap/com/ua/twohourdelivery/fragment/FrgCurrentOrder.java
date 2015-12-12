@@ -39,7 +39,7 @@ public class FrgCurrentOrder extends CommonFragment {
 //        orderList = new ArrayList<>();
 //        orderList.add(new Order("5 мин.", "Киев", "Бровары", "1200 грн."));
 
-        orderList = AppContext.getWritableDatabase().getCurrentOrderList();
+        //  orderList = AppContext.getWritableDatabase().getCurrentOrderList();
 
     }
 

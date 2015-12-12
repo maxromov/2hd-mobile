@@ -2,9 +2,11 @@ package uzap.com.ua.twohourdelivery.api;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
@@ -15,12 +17,12 @@ import java.util.concurrent.TimeoutException;
  * Created by marazmone on 12.12.2015.
  */
 public class OrderRequestor {
-    public static JSONObject sendJsonRequest(RequestQueue requestQueue, String url) {
-        JSONObject response = null;
+    public static JSONArray sendJsonRequest(RequestQueue requestQueue, String url) {
+        JSONArray response = null;
 
-        RequestFuture<JSONObject> requestFuture = RequestFuture.newFuture();
+        RequestFuture<JSONArray> requestFuture = RequestFuture.newFuture();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
                 url,
                 (String) null, requestFuture, requestFuture);
         requestQueue.add(request);

@@ -13,11 +13,11 @@
             android:title="@string/item_drawer_current_order" />
         <item
             android:id="@+id/navigation_item_3"
-            android:icon="@drawable/ic_info"
+            android:icon="@drawable/ic_profile"
             android:title="@string/item_drawer_profile" />
         <item
             android:id="@+id/navigation_item_4"
-            android:icon="@drawable/ic_profile"
+            android:icon="@drawable/ic_info"
             android:title="@string/item_drawer_info" />
 
     </group>

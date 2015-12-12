@@ -35,7 +35,7 @@ public class TestTask extends AsyncTask<Void, Void, ArrayList<Order>> {
     @Override
     protected ArrayList<Order> doInBackground(Void... params) {
         ArrayList<Order> orderList = list;
-        orderList.add(new Order("5 мин.", "Киев", "Бровары", "1200 грн."));
+        // orderList.add(new Order("5 мин.", "Киев", "Бровары", "1200 грн."));
         AppContext.getWritableDatabase().insertOrder("5 мин.", "Киев", "Бровары", "1200 грн.");
         try {
             Thread.sleep(3000);

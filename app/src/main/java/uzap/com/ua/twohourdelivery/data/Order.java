@@ -4,7 +4,8 @@ package uzap.com.ua.twohourdelivery.data;
  * Created by marazmone on 12.12.2015.
  */
 public class Order {
-    private String time;
+    private int id;
+    private long time;
     private String addressFrom;
     private String addressTo;
     private String price;
@@ -12,18 +13,20 @@ public class Order {
     public Order() {
     }
 
-    public Order(String time, String addressFrom, String addressTo, String price) {
-        this.time = time;
-        this.addressFrom = addressFrom;
-        this.addressTo = addressTo;
-        this.price = price;
+
+    public int getId() {
+        return id;
     }
 
-    public String getTime() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(long time) {
         this.time = time;
     }
 

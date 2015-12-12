@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,14 +20,16 @@ import uzap.com.ua.twohourdelivery.R;
 import uzap.com.ua.twohourdelivery.activity.DetailOrderActivity;
 import uzap.com.ua.twohourdelivery.activity.MainActivity;
 import uzap.com.ua.twohourdelivery.adapter.OpenOrderAdapter;
+import uzap.com.ua.twohourdelivery.callback.OnLoadOrderListListener;
 import uzap.com.ua.twohourdelivery.callback.OrderListListener;
 import uzap.com.ua.twohourdelivery.data.Order;
 import uzap.com.ua.twohourdelivery.data.UserProfile;
 import uzap.com.ua.twohourdelivery.dialog.DialogPhone;
+import uzap.com.ua.twohourdelivery.task.GetAllOrderTask;
 import uzap.com.ua.twohourdelivery.task.TestTask;
 import uzap.com.ua.twohourdelivery.util.RecyclerItemClickListener;
 
-public class FrgOpenOrder extends CommonFragment implements SwipeRefreshLayout.OnRefreshListener, OrderListListener {
+public class FrgOpenOrder extends CommonFragment implements SwipeRefreshLayout.OnRefreshListener, OnLoadOrderListListener {
 
     private RecyclerView recyclerView;
     private OpenOrderAdapter adapter;
@@ -35,18 +38,13 @@ public class FrgOpenOrder extends CommonFragment implements SwipeRefreshLayout.O
     //TODO: test
     private ProgressDialog pDialog;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (AppContext.getWritableDatabase().getOrderList() != null) {
-            orderList = AppContext.getWritableDatabase().getOrderList();
-        } else {
-            orderList = new ArrayList<>();
-            orderList.add(new Order("5 мин.", "Киев", "Бровары", "1200 грн."));
+        if (AppContext.getWritableDatabase().getOrderList() == null) {
+            new GetAllOrderTask(this, getActivity()).execute();
         }
-
-
-        pDialog = new ProgressDialog(getActivity());
     }
 
 
@@ -57,10 +55,6 @@ public class FrgOpenOrder extends CommonFragment implements SwipeRefreshLayout.O
         Log.d("wtf", "frgOpen");
         showFab();
 
-
-        if (orderList.isEmpty()) {
-            new TestTask(getActivity(), this, orderList).execute();
-        }
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rvOpenOrder);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity());
@@ -82,15 +76,17 @@ public class FrgOpenOrder extends CommonFragment implements SwipeRefreshLayout.O
                             intent.putExtra("Заява №" + position, "order");
                             startActivity(intent);
                         }
-                    }
+                        }
                 }));
+
+
 
 
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefresh);
         swipeRefreshLayout.setColorSchemeColors(getResources().getIntArray(R.array.swipeRefreshColors));
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        ((MainActivity) getActivity()).clickFabButton(this, orderList);
+        ((MainActivity) getActivity()).clickFabButton(this);
 
         return rootView;
     }
@@ -109,12 +105,12 @@ public class FrgOpenOrder extends CommonFragment implements SwipeRefreshLayout.O
 
     @Override
     public void onRefresh() {
-        swipeRefreshLayout.setRefreshing(false);
-        new TestTask(getActivity(), this, orderList).execute();
+        new GetAllOrderTask(this, getActivity()).execute();
     }
 
+
     @Override
-    public void orderListener(ArrayList<Order> list) {
+    public void onLoadOrderList(ArrayList<Order> list) {
         if (swipeRefreshLayout.isRefreshing()) {
             swipeRefreshLayout.setRefreshing(false);
         }
