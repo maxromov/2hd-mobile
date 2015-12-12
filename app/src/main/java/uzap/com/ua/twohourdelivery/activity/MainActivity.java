@@ -37,12 +37,20 @@ public class MainActivity extends AppCompatActivity
     private FloatingActionButton fab;
     private Context context;
 
+    public static void showCurrentFragment() {
+        fm.beginTransaction().replace(R.id.content_frame, new FrgCurrentOrder()).commit();
+    }
+
+    public static void showOpenFragment() {
+        fm.beginTransaction().replace(R.id.content_frame, new FrgOpenOrder()).commit();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppContext.getWritableDatabase().deleteOrderTable();
+
 
         fm = getSupportFragmentManager();
         context = this;
@@ -74,7 +82,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
     public void clickFabButton(final OrderListListener listListener, final ArrayList<Order> list) {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +96,27 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private void navigate(int mSelectedId) {
         if (mSelectedId == R.id.navigation_item_1) {
@@ -118,28 +146,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -190,4 +196,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppContext.getWritableDatabase().deleteOrderTable();
+    }
 }

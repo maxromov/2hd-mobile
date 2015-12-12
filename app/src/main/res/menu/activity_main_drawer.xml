@@ -5,11 +5,11 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_item_1"
-            android:icon="@drawable/ic_info"
+            android:icon="@drawable/ic_openorder"
             android:title="@string/item_drawer_open_order" />
         <item
             android:id="@+id/navigation_item_2"
-            android:icon="@drawable/ic_info"
+            android:icon="@drawable/ic_current_order"
             android:title="@string/item_drawer_current_order" />
         <item
             android:id="@+id/navigation_item_3"
@@ -17,7 +17,7 @@
             android:title="@string/item_drawer_profile" />
         <item
             android:id="@+id/navigation_item_4"
-            android:icon="@drawable/ic_info"
+            android:icon="@drawable/ic_profile"
             android:title="@string/item_drawer_info" />
 
     </group>

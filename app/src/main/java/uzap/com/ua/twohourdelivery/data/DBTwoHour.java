@@ -59,6 +59,15 @@ public class DBTwoHour {
         mDatabase.insert(DBHelper.ORDER_TABLE, null, values);
     }
 
+    public void insertCurrentOrder(String time, String from, String to, String price) {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.CURRENT_ORDER_TIME, time);
+        values.put(DBHelper.CURRENT_ORDER_FROM, from);
+        values.put(DBHelper.CURRENT_ORDER_TO, to);
+        values.put(DBHelper.CURRENT_ORDER_PRICE, price);
+        mDatabase.insert(DBHelper.CURRENT_ORDER_TABLE, null, values);
+    }
+
     public ArrayList<Order> getOrderList() {
         ArrayList<Order> list = new ArrayList<>();
         String[] columns = {
@@ -85,6 +94,35 @@ public class DBTwoHour {
         return list;
     }
 
+    public ArrayList<Order> getCurrentOrderList() {
+        ArrayList<Order> list = new ArrayList<>();
+        String[] columns = {
+                DBHelper.ID,
+                DBHelper.CURRENT_ORDER_TIME,
+                DBHelper.CURRENT_ORDER_FROM,
+                DBHelper.CURRENT_ORDER_TO,
+                DBHelper.CURRENT_ORDER_PRICE
+        };
+
+        Cursor cursor = mDatabase.query(DBHelper.CURRENT_ORDER_TABLE, columns, null, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Order order = new Order();
+
+                order.setTime(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_TIME)));
+                order.setAddressFrom(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_FROM)));
+                order.setAddressTo(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_TO)));
+                order.setPrice(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_PRICE)));
+                list.add(order);
+            }
+            while (cursor.moveToNext());
+        } else {
+            return null;
+        }
+        cursor.close();
+        return list;
+    }
+
     public void deleteOrderTable() {
         mDatabase.delete(DBHelper.ORDER_TABLE, null, null);
     }
@@ -99,10 +137,23 @@ public class DBTwoHour {
         public static final String ORDER_FROM = "from_order";
         public static final String ORDER_TO = "to_order";
         public static final String ORDER_PRICE = "price_order";
+        public static final String CURRENT_ORDER_TABLE = "current_order_table";
+        public static final String CURRENT_ORDER_TIME = "current_time_order";
+        public static final String CURRENT_ORDER_FROM = "current_from_order";
+        public static final String CURRENT_ORDER_TO = "current_to_order";
+        public static final String CURRENT_ORDER_PRICE = "current_price_order";
+        public static final String SQL_DELETE_ORDER = "DROP TABLE IF EXISTS " + ORDER_TABLE;
         public static final String SQL_DELETE_PROFILE = "DROP TABLE IF EXISTS " + PROFILE_TABLE;
+        public static final String SQL_DELETE_CURRENT_ORDER = "DROP TABLE IF EXISTS " + CURRENT_ORDER_TABLE;
         private static final String TAG = "com.twohour.db";
         private static final String DATABASE_NAME = "twohour.db";
         private static final int DATABASE_VERSION = 1;
+        private static final String SQL_CREATOR_CURRENT_ORDER = "CREATE TABLE " + CURRENT_ORDER_TABLE + " ("
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + CURRENT_ORDER_TIME + " TEXT,"
+                + CURRENT_ORDER_FROM + " TEXT,"
+                + CURRENT_ORDER_TO + " TEXT,"
+                + CURRENT_ORDER_PRICE + " TEXT);";
         private static final String SQL_CREATOR_ORDER = "CREATE TABLE " + ORDER_TABLE + " ("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ORDER_TIME + " TEXT,"
@@ -123,11 +174,14 @@ public class DBTwoHour {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(SQL_CREATOR_PROFILE);
             db.execSQL(SQL_CREATOR_ORDER);
+            db.execSQL(SQL_CREATOR_CURRENT_ORDER);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL(SQL_DELETE_PROFILE);
+            db.execSQL(SQL_DELETE_ORDER);
+            db.execSQL(SQL_DELETE_CURRENT_ORDER);
         }
     }
 }
