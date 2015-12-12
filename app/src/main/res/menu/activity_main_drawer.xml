@@ -6,19 +6,19 @@
         <item
             android:id="@+id/navigation_item_1"
             android:icon="@drawable/ic_info"
-            android:title="Открытые заявки" />
+            android:title="@string/item_drawer_open_order" />
         <item
             android:id="@+id/navigation_item_2"
             android:icon="@drawable/ic_info"
-            android:title="Текущие заявки" />
+            android:title="@string/item_drawer_current_order" />
         <item
             android:id="@+id/navigation_item_3"
             android:icon="@drawable/ic_info"
-            android:title="Мои данные" />
+            android:title="@string/item_drawer_profile" />
         <item
             android:id="@+id/navigation_item_4"
             android:icon="@drawable/ic_info"
-            android:title="О приожении" />
+            android:title="@string/item_drawer_info" />
 
     </group>
 </menu>

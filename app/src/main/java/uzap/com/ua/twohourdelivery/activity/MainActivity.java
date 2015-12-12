@@ -22,6 +22,7 @@ import uzap.com.ua.twohourdelivery.fragment.FrgCurrentOrder;
 import uzap.com.ua.twohourdelivery.fragment.FrgInfo;
 import uzap.com.ua.twohourdelivery.fragment.FrgOpenOrder;
 import uzap.com.ua.twohourdelivery.fragment.FrgProfile;
+import uzap.com.ua.twohourdelivery.task.TestTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,8 +49,9 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                new TestTask(context).execute();
             }
         });
 
