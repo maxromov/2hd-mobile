@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
 import java.util.ArrayList;
 
@@ -139,6 +140,26 @@ public class DBTwoHour {
         return list;
     }
 
+    //relize
+
+    public void insertArticlesInDataBase(ArrayList<Order> listOrders) {
+
+        String sql = "INSERT INTO " + DBHelper.ORDER_TABLE + " VALUES (?,?,?,?,?);";
+        SQLiteStatement statement = mDatabase.compileStatement(sql);
+        mDatabase.beginTransaction();
+        for (int i = 0; i < listOrders.size(); i++) {
+            Order currentOrder = listOrders.get(i);
+            statement.clearBindings();
+            statement.bindString(2, currentOrder.getTime());
+            statement.bindString(3, currentOrder.getAddressFrom());
+            statement.bindString(4, currentOrder.getAddressTo());
+            statement.bindString(5, currentOrder.getPrice());
+            statement.execute();
+        }
+        mDatabase.setTransactionSuccessful();
+        mDatabase.endTransaction();
+    }
+
     public void deleteOrderTable() {
         mDatabase.delete(DBHelper.ORDER_TABLE, null, null);
     }
@@ -148,11 +169,13 @@ public class DBTwoHour {
         public static final String PROFILE_TABLE = "profile";
         public static final String PROFILE_NAME = "name";
         public static final String PROFILE_PHONE = "phone";
+
         public static final String ORDER_TABLE = "order_table";
         public static final String ORDER_TIME = "time_order";
         public static final String ORDER_FROM = "from_order";
         public static final String ORDER_TO = "to_order";
         public static final String ORDER_PRICE = "price_order";
+
         public static final String CURRENT_ORDER_TABLE = "current_order_table";
         public static final String CURRENT_ORDER_TIME = "current_time_order";
         public static final String CURRENT_ORDER_FROM = "current_from_order";
