@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class DBTwoHour {
     private DBHelper mHelper;
     private SQLiteDatabase mDatabase;
-
+    private int lastOrder;
 
     public DBTwoHour(Context context) {
         mHelper = new DBHelper(context);
@@ -66,6 +66,22 @@ public class DBTwoHour {
         values.put(DBHelper.CURRENT_ORDER_TO, to);
         values.put(DBHelper.CURRENT_ORDER_PRICE, price);
         mDatabase.insert(DBHelper.CURRENT_ORDER_TABLE, null, values);
+    }
+
+    public void deleteCurrentOrder() {
+
+        String[] columns = {
+                DBHelper.ID, DBHelper.CURRENT_ORDER_TIME,
+                DBHelper.CURRENT_ORDER_FROM, DBHelper.CURRENT_ORDER_TO,
+                DBHelper.CURRENT_ORDER_PRICE
+        };
+        Cursor cursor = mDatabase.query(DBHelper.CURRENT_ORDER_TABLE, columns, null, null, null, null, null);
+        if (cursor != null && cursor.moveToLast()) {
+            lastOrder = cursor.getInt(cursor.getColumnIndex(DBHelper.ID));
+            cursor.close();
+        }
+
+        mDatabase.delete(DBHelper.CURRENT_ORDER_TABLE, DBHelper.ID + "=" + lastOrder, null);
     }
 
     public ArrayList<Order> getOrderList() {

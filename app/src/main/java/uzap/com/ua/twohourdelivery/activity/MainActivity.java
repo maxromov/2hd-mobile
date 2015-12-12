@@ -32,17 +32,27 @@ import uzap.com.ua.twohourdelivery.task.TestTask;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OrderListListener {
 
+    private static final String SELECTED_ITEM_ID = "selected_item_id";
+
     public static FragmentManager fm;
+    private static NavigationView navigationView;
     private DrawerLayout mDrawerLayout;
     private FloatingActionButton fab;
     private Context context;
+    private int mItemSelected;
 
     public static void showCurrentFragment() {
         fm.beginTransaction().replace(R.id.content_frame, new FrgCurrentOrder()).commit();
+        setSelectItemDrawer(1);
     }
 
     public static void showOpenFragment() {
         fm.beginTransaction().replace(R.id.content_frame, new FrgOpenOrder()).commit();
+        setSelectItemDrawer(0);
+    }
+
+    public static void setSelectItemDrawer(int i) {
+        navigationView.getMenu().getItem(i).setChecked(true);
     }
 
     @Override
@@ -78,8 +88,14 @@ public class MainActivity extends AppCompatActivity
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //  mItemSelected = savedInstanceState == null ? 0 : savedInstanceState.getInt(SELECTED_ITEM_ID);
+        setSelectItemDrawer(0);
+//        mItemSelected = R.id.navigation_item_1;
+//        navigate(mItemSelected);
     }
 
     public void clickFabButton(final OrderListListener listListener, final ArrayList<Order> list) {
@@ -151,6 +167,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        item.setChecked(true);
         int id = item.getItemId();
         navigate(id);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -200,5 +217,11 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         AppContext.getWritableDatabase().deleteOrderTable();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SELECTED_ITEM_ID, mItemSelected);
     }
 }

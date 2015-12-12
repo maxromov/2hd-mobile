@@ -33,7 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Название:" />
+                android:text="Название:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -52,7 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Адрес:" />
+                android:text="Адрес:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -71,7 +73,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Район:" />
+                android:text="Район:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -90,7 +93,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Телефон:" />
+                android:text="Телефон:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -124,7 +128,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Район:" />
+                android:text="Район:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -143,7 +148,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Адрес:" />
+                android:text="Адрес:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -162,7 +168,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Имя:" />
+                android:text="Имя:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -181,7 +188,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Телефон:" />
+                android:text="Телефон:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -200,7 +208,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Доставка:" />
+                android:text="Доставка:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -219,7 +228,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Посылка:" />
+                android:text="Посылка:"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"

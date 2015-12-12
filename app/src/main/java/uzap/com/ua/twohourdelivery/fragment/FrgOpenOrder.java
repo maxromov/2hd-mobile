@@ -79,7 +79,7 @@ public class FrgOpenOrder extends CommonFragment implements SwipeRefreshLayout.O
                             myDialogFragment.show(MainActivity.fm, "dialog_phone");
                         } else {
                             Intent intent = new Intent(getActivity(), DetailOrderActivity.class);
-                            intent.putExtra("isCurrent", false);
+                            intent.putExtra("Заява №" + position, "order");
                             startActivity(intent);
                         }
                     }

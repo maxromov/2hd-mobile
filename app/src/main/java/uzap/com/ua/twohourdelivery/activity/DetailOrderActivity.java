@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import uzap.com.ua.twohourdelivery.AppContext;
 import uzap.com.ua.twohourdelivery.R;
 
 public class DetailOrderActivity extends AppCompatActivity {
@@ -46,6 +47,7 @@ public class DetailOrderActivity extends AppCompatActivity {
                     alertDialog.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            AppContext.getWritableDatabase().deleteCurrentOrder();
                             isFinishOrder = true;
                             finish();
                         }
@@ -65,6 +67,7 @@ public class DetailOrderActivity extends AppCompatActivity {
             btnGo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    AppContext.getWritableDatabase().insertCurrentOrder("5 мин.", "Киев", "Бровары", "1200 грн.");
                     isFinishOrder = false;
                     finish();
                 }
