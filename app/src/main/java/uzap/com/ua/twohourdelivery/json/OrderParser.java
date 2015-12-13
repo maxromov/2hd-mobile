@@ -22,8 +22,8 @@ public class OrderParser {
                     JSONObject currentOrder = response.getJSONObject(i);
                     int id = currentOrder.getInt("id");
                     long time = currentOrder.getLong("creation_date");
-                    String from = currentOrder.getString("delivery_address");
-                    //   String to = currentOrder.getString("address");
+                    String from = currentOrder.getString("from_address");
+                    String to = currentOrder.getString("delivery_address");
                     int deliveryCost = currentOrder.getInt("delivery_cost");
                     int packageCost = currentOrder.getInt("package_cost");
 
@@ -31,7 +31,7 @@ public class OrderParser {
                     order.setId(id);
                     order.setTime(time);
                     order.setAddressFrom(from);
-                    order.setAddressTo("Kiev");
+                    order.setAddressTo(to);
                     order.setPricePackage(packageCost);
                     order.setPriceDelivery(deliveryCost);
 

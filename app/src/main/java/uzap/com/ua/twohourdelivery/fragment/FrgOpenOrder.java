@@ -70,6 +70,10 @@ public class FrgOpenOrder extends CommonFragment implements OnLoadOrderListListe
                         } else {
                             Intent intent = new Intent(getActivity(), DetailOrderActivity.class);
                             intent.putExtra("time", adapter.getItem(position).getTime());
+                            intent.putExtra("from", adapter.getItem(position).getAddressFrom());
+                            intent.putExtra("to", adapter.getItem(position).getAddressTo());
+                            intent.putExtra("priceDelivery", adapter.getItem(position).getPricePackage());
+                            intent.putExtra("pricePackage", adapter.getItem(position).getPriceDelivery());
                             startActivity(intent);
                         }
                     }
