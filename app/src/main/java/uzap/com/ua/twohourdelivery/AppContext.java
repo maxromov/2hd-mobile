@@ -42,9 +42,9 @@ public class AppContext extends Application {
     }
 
     public RequestQueue getRequestQueue() {
-        if (mRequestQueue == null) {
+//        if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
+//        }
         return mRequestQueue;
     }
 

@@ -1,5 +1,7 @@
 package uzap.com.ua.twohourdelivery.json;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,6 +13,7 @@ import uzap.com.ua.twohourdelivery.data.Order;
 public class OrderParser {
     public static ArrayList<Order> parseJSONResponse(JSONArray response) {
 
+
         ArrayList<Order> listOrders = new ArrayList<>();
 
         if (response != null && response.length() > 0) {
@@ -20,7 +23,7 @@ public class OrderParser {
                     int id = currentOrder.getInt("id");
                     long time = currentOrder.getLong("creation_date");
                     String from = currentOrder.getString("delivery_address");
-                    String to = currentOrder.getString("address");
+                    //   String to = currentOrder.getString("address");
                     int deliveryCost = currentOrder.getInt("delivery_cost");
                     int packageCost = currentOrder.getInt("package_cost");
                     String price = packageCost +
@@ -30,7 +33,7 @@ public class OrderParser {
                     order.setId(id);
                     order.setTime(time);
                     order.setAddressFrom(from);
-                    order.setAddressTo(to);
+                    order.setAddressTo("Kiev");
                     order.setPrice(price);
 
                     listOrders.add(order);
@@ -39,8 +42,8 @@ public class OrderParser {
             } catch (JSONException e) {
 
             }
-
         }
+
         return listOrders;
     }
 }

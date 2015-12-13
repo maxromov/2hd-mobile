@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 
 import uzap.com.ua.twohourdelivery.AppContext;
 import uzap.com.ua.twohourdelivery.R;
-import uzap.com.ua.twohourdelivery.callback.OnLoadOrderListListener;
 import uzap.com.ua.twohourdelivery.callback.OrderListListener;
 import uzap.com.ua.twohourdelivery.data.Order;
 import uzap.com.ua.twohourdelivery.fragment.CommonFragment;
@@ -45,12 +45,14 @@ public class MainActivity extends AppCompatActivity
     private int mItemSelected;
 
     public static void showCurrentFragment() {
-        fm.beginTransaction().replace(R.id.content_frame, new FrgCurrentOrder()).commit();
+        fm.beginTransaction().replace(R.id.content_frame, new FrgCurrentOrder(), "FrgCurrentOrder")
+                .addToBackStack("FrgCurrentOrder").commit();
         setSelectItemDrawer(1);
     }
 
     public static void showOpenFragment() {
-        fm.beginTransaction().replace(R.id.content_frame, new FrgOpenOrder()).commit();
+        fm.beginTransaction().replace(R.id.content_frame, new FrgOpenOrder(), "FrgOpenOrder")
+                .addToBackStack("FrgOpenOrder").commit();
         setSelectItemDrawer(0);
     }
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         fm = getSupportFragmentManager();
         context = this;
 
-        replaceFragment(new FrgOpenOrder());
+        addFragment(new FrgOpenOrder());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,17 +97,36 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
         //  mItemSelected = savedInstanceState == null ? 0 : savedInstanceState.getInt(SELECTED_ITEM_ID);
         setSelectItemDrawer(0);
 //        mItemSelected = R.id.navigation_item_1;
 //        navigate(mItemSelected);
     }
 
-    public void clickFabButton(final OnLoadOrderListListener listListener) {
+//    public void clickFabButton(final OnLoadOrderListListener listListener) {
+//        Log.d("wtf", "clickFabButton");
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new GetAllOrderTask(listListener, MainActivity.this).execute();
+//            }
+//        });
+//    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new GetAllOrderTask(listListener, MainActivity.this).execute();
+                FrgOpenOrder fo = (FrgOpenOrder) fm
+                        .findFragmentByTag("FrgOpenOrder");
+                if (fo != null) {
+                    fo.onLoadListener();
+                }
             }
         });
     }
@@ -192,9 +213,10 @@ public class MainActivity extends AppCompatActivity
 
     private void treatFragment(Fragment f, boolean addToBackStack) {
         String tag = f.getClass().getSimpleName();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ft = fm.beginTransaction();
 
         ft.replace(R.id.content_frame, f, tag);
+        Log.d("wtf", "tag = " + tag);
         if (addToBackStack) ft.addToBackStack(tag);
         ft.commit();
     }
@@ -216,11 +238,11 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        AppContext.getWritableDatabase().deleteOrderTable();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        AppContext.getWritableDatabase().deleteOrderTable();
+//    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

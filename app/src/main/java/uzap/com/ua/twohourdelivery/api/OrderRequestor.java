@@ -1,5 +1,7 @@
 package uzap.com.ua.twohourdelivery.api;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -18,6 +20,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class OrderRequestor {
     public static JSONArray sendJsonRequest(RequestQueue requestQueue, String url) {
+        Log.d("wtf", "sendJsonRequest");
         JSONArray response = null;
 
         RequestFuture<JSONArray> requestFuture = RequestFuture.newFuture();

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -144,9 +145,10 @@ public class DBTwoHour {
     //relize
 
     public void insertArticlesInDataBase(ArrayList<Order> listOrders) {
+        Log.d("wtf", "insertArticlesInDataBase");
+        mDatabase.delete(DBHelper.ORDER_TABLE, null, null);
         ContentValues values = new ContentValues();
 
-        mDatabase.beginTransaction();
         for (int i = 0; i < listOrders.size(); i++) {
             Order currentOrder = listOrders.get(i);
             values.put(DBHelper.ORDER_ID, currentOrder.getId());
@@ -159,7 +161,9 @@ public class DBTwoHour {
     }
 
     public void deleteOrderTable() {
-        mDatabase.delete(DBHelper.ORDER_TABLE, null, null);
+        // mDatabase.execSQL(DBHelper.SQL_DELETE_ORDER);
+        mDatabase.execSQL("delete * from " + DBHelper.ORDER_TABLE);
+        // mDatabase.delete(DBHelper.ORDER_TABLE, null, null);
     }
 
     private static class DBHelper extends SQLiteOpenHelper {
