@@ -66,11 +66,32 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Стоимость посылки/доставки:"
+            android:text="Стоимость посылки:"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvOrderPrice"
+            android:id="@+id/tvOrderPricePackage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:text="80/1250 грн." />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Стоимость доставки:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvOrderPriceDelivery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"

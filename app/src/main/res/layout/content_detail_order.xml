@@ -33,15 +33,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Название:"
+                android:text="Район:"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Лучший в мире магазин" />
+                android:text="Оболонский" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,15 +74,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Район:"
+                android:text="Название:"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Оболонский" />
+                android:text="Лучший в мире магазин" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +110,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/bg_textview_line"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -197,6 +199,20 @@
                 android:layout_weight="1"
                 android:text="+38 063 999 66 33" />
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            style="@style/TitleFontBlackLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Оплата" />
 
         <LinearLayout
             android:layout_width="match_parent"

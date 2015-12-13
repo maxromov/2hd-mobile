@@ -29,8 +29,6 @@ import uzap.com.ua.twohourdelivery.fragment.FrgCurrentOrder;
 import uzap.com.ua.twohourdelivery.fragment.FrgInfo;
 import uzap.com.ua.twohourdelivery.fragment.FrgOpenOrder;
 import uzap.com.ua.twohourdelivery.fragment.FrgProfile;
-import uzap.com.ua.twohourdelivery.task.GetAllOrderTask;
-import uzap.com.ua.twohourdelivery.task.TestTask;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OrderListListener {

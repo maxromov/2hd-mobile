@@ -2,12 +2,16 @@ package uzap.com.ua.twohourdelivery.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import uzap.com.ua.twohourdelivery.R;
 import uzap.com.ua.twohourdelivery.data.Order;
@@ -40,10 +44,17 @@ public class OpenOrderAdapter extends RecyclerView.Adapter<OpenOrderAdapter.Orde
     @Override
     public void onBindViewHolder(OrderViewHolder holder, int position) {
         Order order = list.get(position);
-        holder.tvTimeAgo.setText(String.valueOf(order.getTime()));
+        Calendar calendar = Calendar.getInstance();
+        long time = calendar.getTimeInMillis() - order.getTime();
+        long strTime = time / 60000;
+        Log.d("wtfTime", "calendar = " + String.valueOf(calendar.getTimeInMillis()));
+        Log.d("wtfTime", "time = " + String.valueOf(order.getTime()));
+
+        holder.tvTimeAgo.setText(String.valueOf(strTime) + " мин. назад");
         holder.tvAddressFrom.setText(order.getAddressFrom());
         holder.tvAddressTo.setText(order.getAddressTo());
-        holder.tvOrderPrice.setText(order.getPrice());
+        holder.tvOrderPriceDelivery.setText(String.valueOf(order.getPriceDelivery()) + " грн.");
+        holder.tvOrderPricePackage.setText(String.valueOf(order.getPricePackage()) + " грн.");
     }
 
     @Override
@@ -56,14 +67,15 @@ public class OpenOrderAdapter extends RecyclerView.Adapter<OpenOrderAdapter.Orde
 
     public static class OrderViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvTimeAgo, tvAddressFrom, tvAddressTo, tvOrderPrice;
+        TextView tvTimeAgo, tvAddressFrom, tvAddressTo, tvOrderPricePackage, tvOrderPriceDelivery;
 
         public OrderViewHolder(View itemView) {
             super(itemView);
             tvTimeAgo = (TextView) itemView.findViewById(R.id.tvTimeAgo);
             tvAddressFrom = (TextView) itemView.findViewById(R.id.tvAddressFrom);
             tvAddressTo = (TextView) itemView.findViewById(R.id.tvAddressTo);
-            tvOrderPrice = (TextView) itemView.findViewById(R.id.tvOrderPrice);
+            tvOrderPriceDelivery = (TextView) itemView.findViewById(R.id.tvOrderPriceDelivery);
+            tvOrderPricePackage = (TextView) itemView.findViewById(R.id.tvOrderPricePackage);
         }
     }
 }

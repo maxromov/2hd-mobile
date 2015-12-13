@@ -8,7 +8,8 @@ public class Order {
     private long time;
     private String addressFrom;
     private String addressTo;
-    private String price;
+    private int pricePackage;
+    private int priceDelivery;
 
     public Order() {
     }
@@ -46,11 +47,19 @@ public class Order {
         this.addressTo = addressTo;
     }
 
-    public String getPrice() {
-        return price;
+    public int getPricePackage() {
+        return pricePackage;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setPricePackage(int pricePackage) {
+        this.pricePackage = pricePackage;
+    }
+
+    public int getPriceDelivery() {
+        return priceDelivery;
+    }
+
+    public void setPriceDelivery(int priceDelivery) {
+        this.priceDelivery = priceDelivery;
     }
 }

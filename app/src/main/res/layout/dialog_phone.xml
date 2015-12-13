@@ -55,6 +55,7 @@
             android:background="@drawable/bg_edittext_dialog"
             android:gravity="center"
             android:hint="Имя Фамилия"
+            android:maxLines="1"
             android:paddingBottom="15dp"
             android:paddingTop="15dp" />
 
@@ -96,28 +97,48 @@
             android:paddingBottom="15dp"
             android:paddingTop="15dp" />
 
-        <Button
-            android:id="@+id/btnPhone"
-            style="@style/TitleFontBlackLarge"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/bg_btn_dialog"
-            android:text="@string/dialog_phone_send_sms" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/TitleFontBlackBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_dialog_cancel"
+                android:text="Отмена" />
+
+            <Button
+                android:id="@+id/btnPhone"
+                style="@style/TitleFontBlackBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_btn_dialog"
+                android:text="@string/dialog_phone_send_sms" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnCancel"
-        style="@style/TitleFontWhite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/bg_btn_cancel"
-        android:padding="5dp"
-        android:text="Отмена"
-        android:textAllCaps="false" />
+    <!--<Button-->
+    <!--android:id="@+id/btnCancel"-->
+    <!--style="@style/TitleFontWhite"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:background="@drawable/bg_btn_cancel"-->
+    <!--android:padding="5dp"-->
+    <!--android:text="Отмена"-->
+    <!--android:textAllCaps="false" />-->
 
 
 </RelativeLayout>

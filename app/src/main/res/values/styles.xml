@@ -53,6 +53,13 @@
         <item name="android:typeface">sans</item>
     </style>
 
+    <style name="TitleFontBlackBtn" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
     <style name="TitleFontBlackEditDialogPhone" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">@dimen/text_size_edit_dialog_phone</item>
         <item name="android:textColor">@color/black</item>

@@ -34,5 +34,5 @@
         <item>@color/colorPrimary</item>
         <item>@color/colorPrimaryDark</item>
     </string-array>
-    <string name="title_activity_detail_order">Описание заявки</string>
+    <string name="title_activity_detail_order">Детали заявки</string>
 </resources>

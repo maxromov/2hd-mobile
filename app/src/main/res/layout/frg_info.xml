@@ -2,12 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
+        style="@style/TitleFontBlack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Info" />
+        android:text="Two Hour Delivery... event at night!" />
+
+    <TextView
+        style="@style/TitleFontBlack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:text="©2TH - 2015" />
+
+    <TextView
+        android:id="@+id/tvSite"
+        style="@style/TitleFontBlack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="all"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:text="http://2hd.com.ua"
+        android:textColor="@color/colorPrimaryDark" />
 
 </LinearLayout>

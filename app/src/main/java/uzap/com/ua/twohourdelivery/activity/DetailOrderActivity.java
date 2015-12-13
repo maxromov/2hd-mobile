@@ -67,7 +67,8 @@ public class DetailOrderActivity extends AppCompatActivity {
             btnGo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AppContext.getWritableDatabase().insertCurrentOrder("5 мин.", "Киев", "Бровары", "1200 грн.");
+                    AppContext.getWritableDatabase()
+                            .insertCurrentOrder("Киев, ул. Киото, 4", "Киев, ул. Житомирская", "1200 грн.", "60 грн.");
                     isFinishOrder = false;
                     finish();
                 }

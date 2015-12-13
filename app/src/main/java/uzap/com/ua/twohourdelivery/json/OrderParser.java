@@ -26,15 +26,14 @@ public class OrderParser {
                     //   String to = currentOrder.getString("address");
                     int deliveryCost = currentOrder.getInt("delivery_cost");
                     int packageCost = currentOrder.getInt("package_cost");
-                    String price = packageCost +
-                            "/" + deliveryCost + "грн.";
 
                     Order order = new Order();
                     order.setId(id);
                     order.setTime(time);
                     order.setAddressFrom(from);
                     order.setAddressTo("Kiev");
-                    order.setPrice(price);
+                    order.setPricePackage(packageCost);
+                    order.setPriceDelivery(deliveryCost);
 
                     listOrders.add(order);
 

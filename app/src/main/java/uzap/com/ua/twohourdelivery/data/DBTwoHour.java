@@ -52,21 +52,22 @@ public class DBTwoHour {
         return userProfile;
     }
 
-    public void insertOrder(String time, String from, String to, String price) {
-        ContentValues values = new ContentValues();
-        values.put(DBHelper.ORDER_TIME, time);
-        values.put(DBHelper.ORDER_FROM, from);
-        values.put(DBHelper.ORDER_TO, to);
-        values.put(DBHelper.ORDER_PRICE, price);
-        mDatabase.insert(DBHelper.ORDER_TABLE, null, values);
-    }
+//    public void insertOrder(String from, String to, String price) {
+//        ContentValues values = new ContentValues();
+////        values.put(DBHelper.ORDER_TIME, time);
+//        values.put(DBHelper.ORDER_FROM, from);
+//        values.put(DBHelper.ORDER_TO, to);
+//        values.put(DBHelper.ORDER_PRICE, price);
+//        mDatabase.insert(DBHelper.ORDER_TABLE, null, values);
+//    }
 
-    public void insertCurrentOrder(String time, String from, String to, String price) {
+    public void insertCurrentOrder(String from, String to, String priceDelivery, String pricePackage) {
         ContentValues values = new ContentValues();
-        values.put(DBHelper.CURRENT_ORDER_TIME, time);
+        // values.put(DBHelper.CURRENT_ORDER_TIME, time);
         values.put(DBHelper.CURRENT_ORDER_FROM, from);
         values.put(DBHelper.CURRENT_ORDER_TO, to);
-        values.put(DBHelper.CURRENT_ORDER_PRICE, price);
+        values.put(DBHelper.CURRENT_ORDER_PRICE_DELIVERY, priceDelivery);
+        values.put(DBHelper.CURRENT_ORDER_PRICE_PACKAGE, pricePackage);
         mDatabase.insert(DBHelper.CURRENT_ORDER_TABLE, null, values);
     }
 
@@ -75,7 +76,7 @@ public class DBTwoHour {
         String[] columns = {
                 DBHelper.ID, DBHelper.CURRENT_ORDER_TIME,
                 DBHelper.CURRENT_ORDER_FROM, DBHelper.CURRENT_ORDER_TO,
-                DBHelper.CURRENT_ORDER_PRICE
+                DBHelper.CURRENT_ORDER_PRICE_DELIVERY, DBHelper.CURRENT_ORDER_PRICE_PACKAGE
         };
         Cursor cursor = mDatabase.query(DBHelper.CURRENT_ORDER_TABLE, columns, null, null, null, null, null);
         if (cursor != null && cursor.moveToLast()) {
@@ -90,7 +91,7 @@ public class DBTwoHour {
         ArrayList<Order> list = new ArrayList<>();
         String[] columns = {
                 DBHelper.ID, DBHelper.ORDER_TIME, DBHelper.ORDER_FROM, DBHelper.ORDER_TO,
-                DBHelper.ORDER_PRICE
+                DBHelper.ORDER_PRICE_DELIVERY, DBHelper.ORDER_PRICE_PACKAGE
         };
 
         Cursor cursor = mDatabase.query(DBHelper.ORDER_TABLE, columns, null, null, null, null, null);
@@ -101,7 +102,8 @@ public class DBTwoHour {
                 order.setTime(cursor.getLong(cursor.getColumnIndex(DBHelper.ORDER_TIME)));
                 order.setAddressFrom(cursor.getString(cursor.getColumnIndex(DBHelper.ORDER_FROM)));
                 order.setAddressTo(cursor.getString(cursor.getColumnIndex(DBHelper.ORDER_TO)));
-                order.setPrice(cursor.getString(cursor.getColumnIndex(DBHelper.ORDER_PRICE)));
+                order.setPricePackage(cursor.getInt(cursor.getColumnIndex(DBHelper.ORDER_PRICE_PACKAGE)));
+                order.setPriceDelivery(cursor.getInt(cursor.getColumnIndex(DBHelper.ORDER_PRICE_DELIVERY)));
                 list.add(order);
                 cursor.close();
             }
@@ -113,34 +115,36 @@ public class DBTwoHour {
         return list;
     }
 
-//    public ArrayList<Order> getCurrentOrderList() {
-//        ArrayList<Order> list = new ArrayList<>();
-//        String[] columns = {
-//                DBHelper.ID,
-//                DBHelper.CURRENT_ORDER_TIME,
-//                DBHelper.CURRENT_ORDER_FROM,
-//                DBHelper.CURRENT_ORDER_TO,
-//                DBHelper.CURRENT_ORDER_PRICE
-//        };
-//
-//        Cursor cursor = mDatabase.query(DBHelper.CURRENT_ORDER_TABLE, columns, null, null, null, null, null);
-//        if (cursor != null && cursor.moveToFirst()) {
-//            do {
-//                Order order = new Order();
-//
-//                order.setTime(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_TIME)));
-//                order.setAddressFrom(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_FROM)));
-//                order.setAddressTo(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_TO)));
-//                order.setPrice(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_PRICE)));
-//                list.add(order);
-//            }
-//            while (cursor.moveToNext());
-//        } else {
-//            return null;
-//        }
-//        cursor.close();
-//        return list;
-//    }
+    public ArrayList<Order> getCurrentOrderList() {
+        ArrayList<Order> list = new ArrayList<>();
+        String[] columns = {
+                DBHelper.ID,
+                DBHelper.CURRENT_ORDER_TIME,
+                DBHelper.CURRENT_ORDER_FROM,
+                DBHelper.CURRENT_ORDER_TO,
+                DBHelper.CURRENT_ORDER_PRICE_DELIVERY,
+                DBHelper.CURRENT_ORDER_PRICE_PACKAGE
+        };
+
+        Cursor cursor = mDatabase.query(DBHelper.CURRENT_ORDER_TABLE, columns, null, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Order order = new Order();
+
+                order.setTime(cursor.getLong(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_TIME)));
+                order.setAddressFrom(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_FROM)));
+                order.setAddressTo(cursor.getString(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_TO)));
+                order.setPricePackage(cursor.getInt(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_PRICE_PACKAGE)));
+                order.setPriceDelivery(cursor.getInt(cursor.getColumnIndex(DBHelper.CURRENT_ORDER_PRICE_DELIVERY)));
+                list.add(order);
+            }
+            while (cursor.moveToNext());
+        } else {
+            return null;
+        }
+        cursor.close();
+        return list;
+    }
 
     //relize
 
@@ -155,7 +159,8 @@ public class DBTwoHour {
             values.put(DBHelper.ORDER_TIME, currentOrder.getTime());
             values.put(DBHelper.ORDER_FROM, currentOrder.getAddressFrom());
             values.put(DBHelper.ORDER_TO, currentOrder.getAddressTo());
-            values.put(DBHelper.ORDER_PRICE, currentOrder.getPrice());
+            values.put(DBHelper.ORDER_PRICE_DELIVERY, currentOrder.getPriceDelivery());
+            values.put(DBHelper.ORDER_PRICE_PACKAGE, currentOrder.getPricePackage());
         }
         mDatabase.insert(DBHelper.ORDER_TABLE, null, values);
     }
@@ -177,14 +182,17 @@ public class DBTwoHour {
         public static final String ORDER_TIME = "time_order";
         public static final String ORDER_FROM = "from_order";
         public static final String ORDER_TO = "to_order";
-        public static final String ORDER_PRICE = "price_order";
+        public static final String ORDER_PRICE_PACKAGE = "price_order_package";
+        public static final String ORDER_PRICE_DELIVERY = "price_order_delivery";
 
         public static final String CURRENT_ORDER_TABLE = "current_order_table";
         public static final String CURRENT_ORDER_ID = "current_order_id";
         public static final String CURRENT_ORDER_TIME = "current_time_order";
         public static final String CURRENT_ORDER_FROM = "current_from_order";
         public static final String CURRENT_ORDER_TO = "current_to_order";
-        public static final String CURRENT_ORDER_PRICE = "current_price_order";
+        public static final String CURRENT_ORDER_PRICE_PACKAGE = "current_price_order_package";
+        public static final String CURRENT_ORDER_PRICE_DELIVERY = "current_price_order_delivery";
+
         public static final String SQL_DELETE_ORDER = "DROP TABLE IF EXISTS " + ORDER_TABLE;
         public static final String SQL_DELETE_PROFILE = "DROP TABLE IF EXISTS " + PROFILE_TABLE;
         public static final String SQL_DELETE_CURRENT_ORDER = "DROP TABLE IF EXISTS " + CURRENT_ORDER_TABLE;
@@ -197,14 +205,16 @@ public class DBTwoHour {
                 + CURRENT_ORDER_TIME + " LONG,"
                 + CURRENT_ORDER_FROM + " TEXT,"
                 + CURRENT_ORDER_TO + " TEXT,"
-                + CURRENT_ORDER_PRICE + " TEXT);";
+                + CURRENT_ORDER_PRICE_PACKAGE + " INTEGER,"
+                + CURRENT_ORDER_PRICE_DELIVERY + " INTEGER);";
         private static final String SQL_CREATOR_ORDER = "CREATE TABLE " + ORDER_TABLE + " ("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ORDER_ID + " INTEGER,"
                 + ORDER_TIME + " LONG,"
                 + ORDER_FROM + " TEXT,"
                 + ORDER_TO + " TEXT,"
-                + ORDER_PRICE + " TEXT);";
+                + ORDER_PRICE_PACKAGE + " INTEGER,"
+                + ORDER_PRICE_DELIVERY + " INTEGER);";
         private static final String SQL_CREATOR_PROFILE = "CREATE TABLE " + PROFILE_TABLE + " ("
                 + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + PROFILE_NAME + " TEXT,"

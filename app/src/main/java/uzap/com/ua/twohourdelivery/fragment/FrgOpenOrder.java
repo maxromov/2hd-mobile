@@ -41,7 +41,7 @@ public class FrgOpenOrder extends CommonFragment implements OnLoadOrderListListe
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        if (AppContext.getWritableDatabase().getOrderList() == null) {
-        // new GetAllOrderTask(this, getActivity()).execute();
+        new GetAllOrderTask(this, getActivity()).execute();
 //        }
         Log.d(LOG_TAG, "Fragment1 onCreate");
     }
@@ -64,9 +64,7 @@ public class FrgOpenOrder extends CommonFragment implements OnLoadOrderListListe
                     @Override
                     public void onItemClick(View view, int position) {
                         UserProfile userProfile = AppContext.getWritableDatabase().getProfile();
-
-
-                        if (userProfile == null || userProfile.getPhone() == null) {
+                        if (userProfile == null || userProfile.getPhone() == null || userProfile.getPhone().equals("")) {
                             DialogPhone myDialogFragment = new DialogPhone();
                             myDialogFragment.show(MainActivity.fm, "dialog_phone");
                         } else {
