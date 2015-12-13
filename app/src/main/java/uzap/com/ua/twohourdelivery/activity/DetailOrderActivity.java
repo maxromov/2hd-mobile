@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -19,13 +20,14 @@ public class DetailOrderActivity extends AppCompatActivity {
 
     private Button btnGo;
     private boolean isFinishOrder;
+    private long time;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_order);
-        isFinishOrder = true;
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -34,8 +36,11 @@ public class DetailOrderActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         boolean isCurrent = intent.getBooleanExtra("isCurrent", false);
+        time = intent.getLongExtra("time", 0);
+        Log.d("timeDetail", String.valueOf(time));
 
         if (isCurrent) {
+            isFinishOrder = false;
             btnGo.setText("Закрыть заявку!");
             btnGo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -48,7 +53,7 @@ public class DetailOrderActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             AppContext.getWritableDatabase().deleteCurrentOrder();
-                            isFinishOrder = true;
+                            isFinishOrder = false;
                             finish();
                         }
                     });
@@ -63,12 +68,13 @@ public class DetailOrderActivity extends AppCompatActivity {
                 }
             });
         } else {
+            isFinishOrder = true;
             btnGo.setText("Беру заявку!");
             btnGo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     AppContext.getWritableDatabase()
-                            .insertCurrentOrder("Киев, ул. Киото, 4", "Киев, ул. Житомирская", "1200 грн.", "60 грн.");
+                            .insertCurrentOrder(time, "Киев, ул. Киото, 4", "Киев, ул. Житомирская", "1200 грн.", "60 грн.");
                     isFinishOrder = false;
                     finish();
                 }

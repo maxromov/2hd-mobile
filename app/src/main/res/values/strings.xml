@@ -10,11 +10,11 @@
 
     <!-- name fragment -->
     <string name="frg_open_order">Открытые заявки</string>
-    <string name="frg_current_order">Текущие заявки</string>
+    <string name="frg_current_order">В исполнении</string>
     <string name="frg_profile">Профиль</string>
     <string name="frg_info">О приложении</string>
     <string name="item_drawer_open_order">Открытые заявки</string>
-    <string name="item_drawer_current_order">Текущие заявки</string>
+    <string name="item_drawer_current_order">В исполнении</string>
     <string name="item_drawer_profile">Мои данные</string>
     <string name="item_drawer_info">О приожении</string>
 

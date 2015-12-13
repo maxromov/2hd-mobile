@@ -1,10 +1,9 @@
 package uzap.com.ua.twohourdelivery.activity;
 
 import android.content.Context;
-import android.net.MailTo;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,7 +19,6 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-import uzap.com.ua.twohourdelivery.AppContext;
 import uzap.com.ua.twohourdelivery.R;
 import uzap.com.ua.twohourdelivery.callback.OrderListListener;
 import uzap.com.ua.twohourdelivery.data.Order;
@@ -37,6 +35,7 @@ public class MainActivity extends AppCompatActivity
 
     public static FragmentManager fm;
     private static NavigationView navigationView;
+    final String TAG = "StatesActivity";
     private DrawerLayout mDrawerLayout;
     private FloatingActionButton fab;
     private Context context;
@@ -44,13 +43,13 @@ public class MainActivity extends AppCompatActivity
 
     public static void showCurrentFragment() {
         fm.beginTransaction().replace(R.id.content_frame, new FrgCurrentOrder(), "FrgCurrentOrder")
-                .addToBackStack("FrgCurrentOrder").commit();
+                .commit();
         setSelectItemDrawer(1);
     }
 
     public static void showOpenFragment() {
-        fm.beginTransaction().replace(R.id.content_frame, new FrgOpenOrder(), "FrgOpenOrder")
-                .addToBackStack("FrgOpenOrder").commit();
+        fm.beginTransaction().replace(R.id.content_frame, new FrgOpenOrder(), "FrgCurrentOrder")
+                .commit();
         setSelectItemDrawer(0);
     }
 
@@ -59,10 +58,35 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "MainActivity: onStart()");
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "MainActivity: onPause()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "MainActivity: onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "MainActivity: onDestroy()");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.d(TAG, "MainActivity: onCreate()");
 
 
         fm = getSupportFragmentManager();
@@ -116,7 +140,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-
+        Log.d(TAG, "MainActivity: onResume()");
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,8 +214,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         item.setChecked(true);
-        int id = item.getItemId();
-        navigate(id);
+        mItemSelected = item.getItemId();
+        navigate(mItemSelected);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -242,9 +266,4 @@ public class MainActivity extends AppCompatActivity
 //        AppContext.getWritableDatabase().deleteOrderTable();
 //    }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(SELECTED_ITEM_ID, mItemSelected);
-    }
 }

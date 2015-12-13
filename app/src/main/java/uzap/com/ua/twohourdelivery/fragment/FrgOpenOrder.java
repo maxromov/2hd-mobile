@@ -69,7 +69,7 @@ public class FrgOpenOrder extends CommonFragment implements OnLoadOrderListListe
                             myDialogFragment.show(MainActivity.fm, "dialog_phone");
                         } else {
                             Intent intent = new Intent(getActivity(), DetailOrderActivity.class);
-                            intent.putExtra("Заява №" + position, "order");
+                            intent.putExtra("time", adapter.getItem(position).getTime());
                             startActivity(intent);
                         }
                     }

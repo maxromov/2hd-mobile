@@ -61,9 +61,9 @@ public class DBTwoHour {
 //        mDatabase.insert(DBHelper.ORDER_TABLE, null, values);
 //    }
 
-    public void insertCurrentOrder(String from, String to, String priceDelivery, String pricePackage) {
+    public void insertCurrentOrder(long time, String from, String to, String priceDelivery, String pricePackage) {
         ContentValues values = new ContentValues();
-        // values.put(DBHelper.CURRENT_ORDER_TIME, time);
+        values.put(DBHelper.CURRENT_ORDER_TIME, time);
         values.put(DBHelper.CURRENT_ORDER_FROM, from);
         values.put(DBHelper.CURRENT_ORDER_TO, to);
         values.put(DBHelper.CURRENT_ORDER_PRICE_DELIVERY, priceDelivery);

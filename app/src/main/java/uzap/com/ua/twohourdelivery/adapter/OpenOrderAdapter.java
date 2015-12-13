@@ -65,6 +65,10 @@ public class OpenOrderAdapter extends RecyclerView.Adapter<OpenOrderAdapter.Orde
         return 0;
     }
 
+    public Order getItem(int position) {
+        return list.get(position);
+    }
+
     public static class OrderViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTimeAgo, tvAddressFrom, tvAddressTo, tvOrderPricePackage, tvOrderPriceDelivery;
